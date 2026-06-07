@@ -9,6 +9,12 @@ setMenuOpen
 ]=
 useState(false)
 
+const[
+adminMode,
+setAdminMode
+]=
+useState(false)
+
 const scrollTo=(id)=>{
 
 const section=
@@ -85,6 +91,14 @@ justifyContent:
 >
 
 <div
+
+onDoubleClick={()=>
+
+setAdminMode(
+true
+)
+
+}
 
 onClick={()=>
 
@@ -177,7 +191,7 @@ style={{
 
 display:"flex",
 
-gap:26,
+gap:18,
 
 alignItems:"center"
 
@@ -251,6 +265,40 @@ Track Booking
 
 </a>
 
+{
+
+adminMode&&(
+
+<a
+
+href="/admin"
+
+style={{
+
+padding:"10px 18px",
+
+borderRadius:999,
+
+background:"#14532d",
+
+color:"#fff",
+
+textDecoration:"none",
+
+fontWeight:700
+
+}}
+
+>
+
+Admin
+
+</a>
+
+)
+
+}
+
 </div>
 
 <button
@@ -285,7 +333,7 @@ fontSize:24
 
 {
 
-menuOpen && (
+menuOpen&&(
 
 <div
 style={{
@@ -353,6 +401,32 @@ textDecoration:"none"
 Track Booking
 
 </a>
+
+{
+
+adminMode&&(
+
+<a
+
+href="/admin"
+
+style={{
+
+color:"#6ee8a8",
+
+textDecoration:"none"
+
+}}
+
+>
+
+Admin
+
+</a>
+
+)
+
+}
 
 </div>
 

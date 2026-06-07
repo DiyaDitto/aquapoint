@@ -26,7 +26,7 @@ element={<Home/>}
 
 <Route
 
-path="/secret-admin"
+path="/admin"
 
 element={<Dashboard/>}
 
