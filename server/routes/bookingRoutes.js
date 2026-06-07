@@ -1,10 +1,14 @@
 import express from "express"
 
-import {
+import{
 
 create,
 
-getAll
+getAll,
+
+updateBooking,
+
+removeBooking
 
 }
 
@@ -29,6 +33,22 @@ router.get(
 "/",
 
 getAll
+
+)
+
+router.put(
+
+"/:id",
+
+updateBooking
+
+)
+
+router.delete(
+
+"/:id",
+
+removeBooking
 
 )
 

@@ -291,7 +291,56 @@ trackingId
 
 }
 
-</div>
+                                </div>
+                                <button
+
+onClick={()=>{
+
+navigator
+
+.clipboard
+
+.writeText(
+
+trackingId
+
+)
+
+alert(
+
+"Tracking ID copied"
+
+)
+
+}}
+
+style={{
+
+marginTop:18,
+
+padding:"12px 18px",
+
+background:"#0d5c3a",
+
+color:"#fff",
+
+border:"none",
+
+borderRadius:10,
+
+cursor:"pointer",
+
+fontWeight:600
+
+}}
+
+>
+
+📋 Copy Tracking ID
+
+</button>
+
+                                
 
 <div
 style={{

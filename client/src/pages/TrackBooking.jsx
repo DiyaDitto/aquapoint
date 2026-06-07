@@ -181,11 +181,7 @@ style={card}
 
 🆔
 
-{
-
-booking.bookingId
-
-}
+{booking.bookingId}
 
 </p>
 
@@ -193,11 +189,7 @@ booking.bookingId
 
 📍
 
-{
-
-booking.district
-
-}
+{booking.district}
 
 </p>
 
@@ -247,9 +239,31 @@ booking.status==="Confirmed"
 
 {
 
-booking.status||
+booking.status==="Pending"
 
-"Pending"
+&&
+
+"🟣 Pending"
+
+}
+
+{
+
+booking.status==="Confirmed"
+
+&&
+
+"✅ Survey Confirmed"
+
+}
+
+{
+
+booking.status==="Completed"
+
+&&
+
+"🟤 Completed"
 
 }
 
@@ -349,10 +363,12 @@ marginTop:18,
 
 padding:"10px 14px",
 
-borderRadius:12,
+borderRadius:999,
 
 display:"inline-block",
 
-fontWeight:700
+fontWeight:700,
+
+color:"#fff"
 
 }

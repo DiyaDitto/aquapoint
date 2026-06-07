@@ -98,16 +98,7 @@ await Booking
 
 .find()
 
-.sort({
-
-createdAt:
--1
-
-})
-
-res
-
-.json(
+res.json(
 
 data
 
@@ -117,9 +108,7 @@ data
 
 catch(err){
 
-res
-
-.status(500)
+res.status(500)
 
 .json({
 
@@ -162,9 +151,7 @@ new:true
 
 )
 
-res
-
-.json(
+res.json(
 
 booking
 
@@ -174,13 +161,57 @@ booking
 
 catch(err){
 
-res
-
-.status(500)
+res.status(500)
 
 .json({
 
 message:
+err.message
+
+})
+
+}
+
+}
+
+export const removeBooking=
+
+async(
+
+req,
+
+res
+
+)=>{
+
+try{
+
+await Booking
+
+.findByIdAndDelete(
+
+req.params.id
+
+)
+
+res.json({
+
+message:
+
+"Deleted"
+
+})
+
+}
+
+catch(err){
+
+res.status(500)
+
+.json({
+
+message:
+
 err.message
 
 })

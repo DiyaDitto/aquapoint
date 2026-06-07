@@ -94,9 +94,12 @@ justifyContent:
 
 onDoubleClick={()=>
 
-setAdminMode(
-true
-)
+window.location.href=
+
+"/admin"
+
+
+
 
 }
 
@@ -401,6 +404,7 @@ textDecoration:"none"
 Track Booking
 
 </a>
+
 
 {
 

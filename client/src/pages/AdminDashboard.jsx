@@ -22,7 +22,6 @@ useEffect(()=>{
 
 axios
 
-axios
 
 .get(
 
@@ -111,7 +110,8 @@ filter
 )
 
 const confirm=
-(id)=>{
+
+async(id)=>{
 
 const booking=
 
@@ -123,7 +123,12 @@ x._id===id
 
 )
 
-if(!booking)
+if(
+
+!booking
+
+)
+
 return
 
 if(
@@ -142,9 +147,26 @@ return
 
 }
 
+try{
+
+await axios.put(
+
+`${import.meta.env.VITE_API_URL}/api/book/${id}`,
+
+{
+
+status:
+"Confirmed"
+
+}
+
+)
+
 setBookings(
 
-bookings.map(
+prev=>
+
+prev.map(
 
 x=>
 
@@ -176,7 +198,7 @@ encodeURIComponent(
 `Hello ${booking.name},
 
 Booking ID:
-${booking.bookingId||"Will be shared"}
+${booking.bookingId}
 
 Your AquaPoint survey slot has been confirmed ✅
 
@@ -201,12 +223,43 @@ window.open(
 
 }
 
+catch{
+
+alert(
+
+"Confirmation failed"
+
+)
+
+}
+
+}
+
+
 const complete=
-(id)=>{
+
+async(id)=>{
+
+try{
+
+await axios.put(
+
+`${import.meta.env.VITE_API_URL}/api/book/${id}`,
+
+{
+
+status:
+"Completed"
+
+}
+
+)
 
 setBookings(
 
-bookings.map(
+prev=>
+
+prev.map(
 
 x=>
 
@@ -233,12 +286,61 @@ x
 
 }
 
+catch(
+
+err
+
+){
+
+console.log(
+
+err
+
+)
+
+alert(
+
+"Update failed"
+
+)
+
+}
+
+}
+
 const remove=
-(id)=>{
+
+async(id)=>{
+
+const ok=
+
+window.confirm(
+
+"Delete permanently? This cannot be restored."
+
+)
+
+if(
+
+!ok
+
+)
+
+return
+
+try{
+
+await axios.delete(
+
+`${import.meta.env.VITE_API_URL}/api/book/${id}`
+
+)
 
 setBookings(
 
-bookings.filter(
+prev=>
+
+prev.filter(
 
 x=>
 
@@ -248,16 +350,59 @@ x._id!==id
 
 )
 
+alert(
+
+"Deleted permanently"
+
+)
+
 }
 
-const saveSchedule=()=>{
+catch{
 
-if(!date)
+alert(
+
+"Delete failed"
+
+)
+
+}
+
+}
+
+
+const saveSchedule=
+
+async()=>{
+
+if(
+
+!date
+
+)
+
 return
+
+try{
+
+await axios.put(
+
+`${import.meta.env.VITE_API_URL}/api/book/${selected}`,
+
+{
+
+schedule:
+date
+
+}
+
+)
 
 setBookings(
 
-bookings.map(
+prev=>
+
+prev.map(
 
 x=>
 
@@ -282,9 +427,37 @@ x
 
 )
 
-setSelected(null)
+setSelected(
 
-setDate("")
+null
+
+)
+
+setDate(
+
+"")
+
+}
+
+catch(
+
+err
+
+){
+
+console.log(
+
+err
+
+)
+
+alert(
+
+"Schedule failed"
+
+)
+
+}
 
 }
 
